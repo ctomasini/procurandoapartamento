@@ -33,7 +33,7 @@ Considerando os testes abaixo, os resultados seriam os seguintes:
         - ['ESCOLA', 'ACADEMIA'];
         - ['ESCOLA', 'MERCADO', 'ACADEMIA'];
 
-2.	Criar uma interface gráfica, em Angular, que permita selecionar as opções e devolva o resultado na mesma tela;
+2.	Criar uma interface gráfica (Preferencialmente em Angular) que permita selecionar as opções e devolva o resultado na mesma tela;
    
 3.	Criar testes unitários baseado nos exemplos passados;
 ![image](https://user-images.githubusercontent.com/90634328/187255894-6ff4700d-0e97-4435-af29-a615925c6d20.png)
