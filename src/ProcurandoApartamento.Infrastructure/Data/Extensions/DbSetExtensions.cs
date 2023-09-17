@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
@@ -101,5 +102,33 @@ namespace ProcurandoApartamento.Infrastructure.Data.Extensions
         {
             return f.Method;
         }
+
+        public static IQueryable<TSource> WhereIn<TSource, TKey>(
+       this IQueryable<TSource> source,
+       Expression<Func<TSource, TKey>> keySelector,
+       IEnumerable<TKey> values)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            if (keySelector == null)
+                throw new ArgumentNullException(nameof(keySelector));
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            if (!values.Any())
+                return source.Where(e => false);
+
+            ParameterExpression parameter = keySelector.Parameters.Single();
+
+            IEnumerable<Expression> equals = values.Select(value =>
+                (Expression)Expression.Equal(keySelector.Body, Expression.Constant(value, typeof(TKey))));
+
+            Expression body = equals.Aggregate((accumulate, equal) =>
+                Expression.Or(accumulate, equal));
+
+            return source.Where(Expression.Lambda<Func<TSource, bool>>(body, parameter));
+        }
+
+
     }
 }
