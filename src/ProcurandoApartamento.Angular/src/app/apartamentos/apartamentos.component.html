@@ -1,0 +1,37 @@
+<div class="row col-12">
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-5">
+    <h4>Listar todos Apartamentos</h4>
+  </div>
+</div>
+
+  <div class="row" *ngFor="let apartamento of apartamentos">
+    <div class="col-2"></div>
+    <div class="col-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-2">Id:</div>
+            <div class="col-1">{{apartamento.id}}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Quadra:</div>
+            <div class="col-1">{{apartamento.quadra}}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Disponível:</div>
+            <div class="col-1">{{apartamento.apartamentoDisponivel ? "Sim" : "Não"}}</div>
+          </div>
+          <div class="row">
+            <div class="col-2">Estabelecimento:</div>
+            <div class="col-1">{{apartamento.estabelecimento }}</div>
+            <div class="col-1">Existe:</div>
+            <div class="col-1">{{apartamento.estabelecimentoExiste ? "Sim" : "Não"}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

@@ -76,6 +76,39 @@ namespace ProcurandoApartamento.Infrastructure.Data.Repositories
             return await query.UsePageableAsync(pageable);
         }
 
+
+
+        public async Task<IEnumerable<TEntity>> WhereInAsync<TValue>(
+    Expression<Func<TEntity, TValue>> valueSelector,
+    IEnumerable<TValue> values)
+        {
+            // Build the predicate for the LINQ Where clause
+            var predicate = BuildWhereInPredicate(valueSelector, values);
+
+            // Apply the filter to the query
+            IQueryable<TEntity> query = BuildQuery().Where(predicate);
+
+            return await query.ToListAsync();
+        }
+
+        private Expression<Func<TEntity, bool>> BuildWhereInPredicate<TValue>(
+            Expression<Func<TEntity, TValue>> valueSelector,
+            IEnumerable<TValue> values)
+        {
+            var parameter = valueSelector.Parameters.Single();
+
+            // Build a list of expressions for each value in the list
+            var equals = values
+                .Select(value => Expression.Equal(valueSelector.Body, Expression.Constant(value, typeof(TValue))))
+                .Aggregate(Expression.Or);
+
+            return Expression.Lambda<Func<TEntity, bool>>(equals, parameter);
+        }
+
+
+
+
+
         private IQueryable<TEntity> BuildQuery()
         {
             IQueryable<TEntity> query = _dbSet;

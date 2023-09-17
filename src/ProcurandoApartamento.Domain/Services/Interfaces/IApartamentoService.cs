@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JHipsterNet.Core.Pagination;
 using ProcurandoApartamento.Domain;
@@ -13,5 +14,6 @@ namespace ProcurandoApartamento.Domain.Services.Interfaces
         Task<Apartamento> FindOne(long id);
 
         Task Delete(long id);
+        Task<IEnumerable<Apartamento>> FindBest(IEnumerable<string> opcoes);
     }
 }
