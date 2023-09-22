@@ -14,5 +14,6 @@ namespace ProcurandoApartamento.Domain.Repositories.Interfaces
         Task<TEntity> GetOneAsync(Expression<Func<TEntity, bool>> filter);
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<IPage<TEntity>> GetPageAsync(IPageable pageable);
+        Task<IEnumerable<TEntity>> WhereInAsync<TValue>(Expression<Func<TEntity, TValue>> valueSelector, IEnumerable<TValue> values);
     }
 }

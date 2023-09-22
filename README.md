@@ -1,68 +1,57 @@
-# Projeto Procurando Apartamento
+# José Alexandre de Barros - Analista Programador
 
-Você provê um serviço por web de busca de apartamentos para locatários. Neste serviço, neste lugar específico da cidade mostrado no mapa abaixo, estão disponíveis diversos apartamentos em cada uma das quadras. As quadras, além de conter os apartamentos, mostram onde a rua começa e onde termina já que a quadra 1 é o início da rua e quadra (n) é mais próximo a seu final. O mapa não determina, porém, o sentido de pedestres e carros já que é mão dupla. É disponibilizada para esse serviço uma tabela da relação de serviços disponíveis em cada uma das quadras: academia, escola e mercado. Os locatários são pessoas muito ocupadas e trabalham remotamente. Assim, é muito importante que eles morem em um lugar com menor deslocamento possível. O serviço deve, com base na indicação do locatário em necessidades de serviços, buscar um apartamento dentro da quadra que proporcione menor deslocamento para seu dia a dia. 
+## Educação
+- UVV – Universidade Vila Velha
+- Curso: Análise e Desenvolvimento de Sistemas (incompleto)
 
-![image](https://user-images.githubusercontent.com/112395489/187196886-8818cda2-395c-4968-8831-645211fb303b.png)
+## Experiência Profissional
 
-A tabela mostra a relação de “ApartamentosDisponiveis” e os estabelecimentos existentes na quadra. Você deve usá-la para tomar a decisão sobre a melhor escolha de imóvel para seu cliente.
+### Sinqia - Analista de Sistemas Pleno
+- **Período:** 10/2022 – 06/2023
+- **Descrição:**
+  Contratado como Analista de Sistemas Pleno para trabalhar na vertical de P&D no time de Demandas Legais. Meu principal projeto na empresa foi o Gerenciador de Perdas e Provisões, e este assim como os outros estava ligado a legislação federal. Participei de outros projetos tais como Cálculo simplificado do IR, EFD-REINF e CNPJ por plano.
+- **Stack:**
+  - .NET CORE, ANGULAR2+, POSTGRESQL, SQL SERVER.
 
-![image](https://user-images.githubusercontent.com/112395489/187196932-38fe6a55-7e7e-4a26-a463-3a3e015335dc.png)
+### FortBras - Analista de Desenvolvimento
+- **Período:** 09/2020 – 10/2022
+- **Descrição:**
+  Contratado para atuar na integração de sistemas por intermédio de uma ferramenta de integração chamada LINKAPI. Minha atuação estendeu-se para intermediação com fornecedores de sistemas, desenvolvimento e sustentação de sistemas. Meu principal projeto na empresa denomina-se Banco de Imagens que inicialmente deveria recuperar imagens da base de dados de um parceiro de negócios, compará-las e a partir desta comparação distribuir estas imagens para os ERPS da empresa - esta fase foi concluída com sucesso. Um UPGRADE, já iniciado, deste projeto será a carga reversa das imagens a partir dos ERPS para a aplicação do Banco de Imagens - consiste basicamente em obter as imagens já existentes nos ERPS da empresa, organizá-las e centralizá-las no Banco de Imagens.
+- **Stack:**
+  - .NET, JAVA SPRING BOOT, ANGULARJS e ANGULAR2+, TYPEORM, NESTJS, NODEJS, TYPESCRIPT, PLPGSQL, SQL SERVER, ORACLE, POSTGRESQL.
 
-A escolha do apartamento vai depender de:
-1.	Ter um apartamento disponível na quadra;
-2.	Andar o mínimo possível para encontrar um estabelecimento de seu interesse;
-3.	A Prioridade de estabelecimentos depende da ordem de entrada de dados. Então se a entrada de dados for ACADEMIA e ESCOLA por exemplo, deve-se priorizar apartamentos mais próximos de ACADEMIAS e depois de ESCOLAS;
-4.	O critério de desempate em caso de mais de uma quadra atender aos requisitos é escolher a quadra mais próxima ao final da rua.  
+ ### Becape Manutenção Industriais – Arquiteto de Sistemas
+- **Período:** 07/2015 – 02/2019
+- **Descrição:**
+  Contratado inicialmente para construir a parte de serviços REST de um aplicativo de restaurantes. Minha atuação estendeu-se em outros projetos, nos quais elaborei, a partir dos requisitos já documentados ou obtidos por intermédio de entrevistas das quais participei, a arquitetura e modelo de diversos projetos.
+  O projeto mais importante do qual participei nesta empresa foi a construção de uma ferramenta do tipo SCADA, a qual conseguimos implantar com sucesso em mais de 30 plantas no Brasil. Trata-se de uma ferramenta cujos sensores extremamente adaptáveis - pressão, temperatura, velocidade, tempo, etc. - se conectam por intermédio de serviços REST à um BACK-END construído em .NET que por sua vez utiliza-se de um FRONT-END em REACTJS que deixa as mãos do utilizador o controle de diversos aspectos da operação em REAL TIME, com a possibilidade da criação de alertas.
+- **Stack:**
+  - NET Framework, ASP.NET MVC, .NET CORE, REST API, WCF, PYTHON, ANGULARJS e ANGULAR2+, MYSQL e SQL SERVER.
 
-## Exemplos:
+### Stone – Analista de Desenvolvimento
+- **Período:** 09/2014 – 06/2015
+- **Descrição:**
+  Contratado como desenvolvedor .NET. Minha primeira responsabilidade na empresa foi a manutenção do portal administrativo e de clientes. Posteriormente fui reposicionado para trabalhar na parte de BACK-END dos sistemas da empresa.Os meus principais projetos na empresa foram: Antecipação de recebíveis e Cessão de recebíveis. Ambos utilizaram .NET como tecnologia fundamental.
+- **Stack:**
+  - ASP.NET MVC, REST Services, SQL SERVER, JQUERY.
 
-Considerando os testes abaixo, os resultados seriam os seguintes: 
+### Ecosistemas – Analista da Computação – II
+- **Período:** 03/2013 – 08/2014
+- **Descrição:**
+   Contratado para manutenção e desenvolvimento de sistemas da área de saúde, utilizados principalmente pelas UPA-RJ - Unidades de Pronto Atendimento do Rio de Janeiro. Atuei principalmente na manutenção e desenvolvimento do sistema PRIME.
+- **Stack:**
+  - ASP.NET, JQUERY, ASP.NET MVC, SQL SERVER, WEB SERVICES, WCF.
+ 
+### Impeto Informática – Analista de Sistemas Sênior
+- **Período:** 03/2012 – 03/2013
+- **Descrição:**
+   Contratado como Desenvolvedor .NET. Atuei na manutenção de sistemas desenvolvidos em .NET internamente e alocado nos clientes. O principal projeto no qual atuei foi na Universidade Estácio de Sá no portal de matrículas.
+- **Stack:**
+  - ASP.NET, JQUERY, JAVASCRIPT, ORACLE, SQL SERVER.
 
-- ['ACADEMIA', 'MERCADO'] 
-    - O resultado deve ser QUADRA 1, pois na quadra 1 tem apartamento disponível e os dois estabelecimentos de seu interesse;
-
-- ['ACADEMIA'] 
-    - O resultado deve ser QUADRA 2, pois na quadra 2 tem apartamento disponível, tem academia e está mais próximo do final da rua;
-
-## O que entregar:
-1.	Algoritmo de resolução (Novo método no Controller Apartamento) Exemplo a seguir:
-![image](https://user-images.githubusercontent.com/90634328/187257056-3d55d9e0-11c2-416e-9c07-2eba82665fcf.png)
-
-    - A entrada de dados será um Array de String, e o return do Método será uma String. Ex: "Quadra 5";
-    - Qual seria o resultado caso as entradas sejam:
-        - ['ESCOLA', 'ACADEMIA'];
-        - ['ESCOLA', 'MERCADO', 'ACADEMIA'];
-
-2.	Criar uma interface gráfica (Preferencialmente em Angular) que permita selecionar as opções e devolva o resultado na mesma tela;
-   
-3.	Criar testes unitários baseado nos exemplos passados;
-![image](https://user-images.githubusercontent.com/90634328/187255894-6ff4700d-0e97-4435-af29-a615925c6d20.png)
+    
+ 
 
 
-## Instruções Gerais
-- Você deverá fazer:
- - Fork desse projeto em um repositório Privado, no Seu perfil, com o Titulo "Desenvolvedor-Positivo";
-    - ![image](https://user-images.githubusercontent.com/90634328/187271331-e6582814-f28b-47d8-a940-f39d76a1f62d.png)
-    -![image](https://user-images.githubusercontent.com/90634328/187272263-00e338ce-eb0c-474f-ab72-6c730060df56.png)
 
-- Resolvê-lo e subir ao seu repositório Privado
-- Os acessos devem ser dados para o usuário 'ctomasini' apenas;
-- O README.md deverá ser o seu curriculo, com a adequada formatação.
 
-## Requisitos de software para executar o projeto
-- net6.0 https://dotnet.microsoft.com/en-us/download/dotnet/6.0
-- Visual Studio 2022 (https://visualstudio.microsoft.com/pt-br/vs/) ou Visual Studio Code (https://code.visualstudio.com/)
-
-## Comandos
-```{.cs}
-dotnet restore ProcurandoApartamento.sln
-```
-```{.cs}
-dotnet build ProcurandoApartamento.sln
-```
-```{.cs}
-dotnet watch run --project src\ProcurandoApartamento\ProcurandoApartamento.csproj
-```
-```{.cs}
-dotnet test test\ProcurandoApartamento.Test\ProcurandoApartamento.Test.csproj
-```

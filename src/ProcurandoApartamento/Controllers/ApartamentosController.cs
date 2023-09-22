@@ -69,5 +69,13 @@ namespace ProcurandoApartamento.Controllers
             await _apartamentoService.Delete(id);
             return NoContent().WithHeaders(HeaderUtil.CreateEntityDeletionAlert(EntityName, id.ToString()));
         }
+
+        [HttpPost,Route("opcoes")]
+        public async Task<IActionResult> LocalizarMelhorOpcao([FromBody] IEnumerable<string> opcoes)
+        {
+            _log.LogDebug($"REST request to opcoes : {opcoes}");
+            var result = await _apartamentoService.FindBest(opcoes);
+            return ActionResultUtil.WrapOrNotFound(result);
+        }
     }
 }

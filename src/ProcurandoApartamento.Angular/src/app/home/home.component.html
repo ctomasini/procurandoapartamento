@@ -1,0 +1,78 @@
+<div class="row col-12">
+  <p><br></p>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-3">
+      <a routerLink="apartamentos">
+        Listar Apartamentos
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-5">
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-3">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          Buscar por opções: <br>
+          <input type="checkbox" (change)="change($event,'ACADEMIA')" name="" formControlName="academia"> ACADEMIA <br>
+          <input type="checkbox" (change)="change($event,'ESCOLA')" name="" formControlName="escola"> ESCOLA <br>
+          <input type="checkbox" (change)="change($event,'MERCADO')" name="" formControlName="mercado"> MERCADO <br>
+          <br>
+          <input type="submit" class="btn btn-primary" value="LOCALIZAR">
+          &nbsp;&nbsp;&nbsp;<input type="button" (click)="reset()" class="btn btn-primary" value="LIMPAR">
+        </form>
+        <p><br></p>
+      </div>
+    </div>
+    <ng-container *ngIf="enviado; then filtrados; else naofiltrados"></ng-container>
+    <ng-template #filtrados>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-9">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-2">Id:</div>
+                    <div class="col-1">{{aptos?.id}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">Quadra:</div>
+                    <div class="col-1">{{aptos?.quadra}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">Disponível:</div>
+                    <div class="col-1">{{aptos?.apartamentoDisponivel ? "Sim" : "Não"}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-2">Estabelecimento:</div>
+                    <div class="col-1">{{aptos?.estabelecimento }}</div>
+                    <div class="col-1">Existe:</div>
+                    <div class="col-1">{{aptos?.estabelecimentoExiste ? "Sim" : "Não"}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #naofiltrados>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-12">
+          <app-apartamentos></app-apartamentos>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</div>

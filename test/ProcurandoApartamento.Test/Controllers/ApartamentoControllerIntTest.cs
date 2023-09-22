@@ -1,15 +1,17 @@
 
+using FluentAssertions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ProcurandoApartamento.Domain;
+using ProcurandoApartamento.Domain.Repositories.Interfaces;
+using ProcurandoApartamento.Domain.Services.Interfaces;
+using ProcurandoApartamento.Test.Setup;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions;
-using ProcurandoApartamento.Infrastructure.Data;
-using ProcurandoApartamento.Domain;
-using ProcurandoApartamento.Domain.Repositories.Interfaces;
-using ProcurandoApartamento.Test.Setup;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace ProcurandoApartamento.Test.Controllers
@@ -22,6 +24,7 @@ namespace ProcurandoApartamento.Test.Controllers
             _client = _factory.CreateClient();
 
             _apartamentoRepository = _factory.GetRequiredService<IApartamentoRepository>();
+            _apartamentoServices = _factory.GetRequiredService<IApartamentoService>();
 
 
             InitTest();
@@ -42,6 +45,7 @@ namespace ProcurandoApartamento.Test.Controllers
         private readonly AppWebApplicationFactory<TestStartup> _factory;
         private readonly HttpClient _client;
         private readonly IApartamentoRepository _apartamentoRepository;
+        private readonly IApartamentoService _apartamentoServices;
 
         private Apartamento _apartamento;
 
@@ -220,6 +224,19 @@ namespace ProcurandoApartamento.Test.Controllers
             apartamento1.Should().NotBe(apartamento2);
             apartamento1.Id = 0;
             apartamento1.Should().NotBe(apartamento2);
+        }
+
+        [Fact]
+        public void GetBestApartamento()
+        {
+            IEnumerable<string> apartamentos = new[] { "ACADEMIA","ESCOLA" };
+            Apartamento aptoList = _apartamentoServices.FindBest(apartamentos).Result;
+            aptoList.Should().NotBeNull();
+
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(apartamentos), Encoding.UTF8, "application/json");
+            var response = _client.PostAsync($"/api/apartamentos/opcoes",jsonContent).Result;
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+
         }
     }
 }

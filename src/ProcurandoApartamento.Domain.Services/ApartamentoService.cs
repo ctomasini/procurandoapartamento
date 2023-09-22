@@ -3,6 +3,10 @@ using JHipsterNet.Core.Pagination;
 using ProcurandoApartamento.Domain.Services.Interfaces;
 using ProcurandoApartamento.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System;
+using System.Linq;
 
 namespace ProcurandoApartamento.Domain.Services
 {
@@ -35,6 +39,16 @@ namespace ProcurandoApartamento.Domain.Services
                 .GetOneAsync(apartamento => apartamento.Id == id);
             return result;
         }
+
+        public virtual async Task<Apartamento> FindBest(IEnumerable<string> opcoes)
+        {
+            var result = await _apartamentoRepository.QueryHelper().WhereInAsync(e => e.Estabelecimento , opcoes);
+            result = result.Filter(x => x.EstabelecimentoExiste && x.ApartamentoDisponivel)
+                .OrderBy(a => Array.IndexOf(opcoes.ToArray<string>(), a.Estabelecimento))
+                .ThenByDescending(x => x.Quadra);
+            return result.FirstOrDefault();
+        }
+
 
         public virtual async Task Delete(long id)
         {
