@@ -230,8 +230,8 @@ namespace ProcurandoApartamento.Test.Controllers
         public void GetBestApartamento()
         {
             IEnumerable<string> apartamentos = new[] { "ACADEMIA","ESCOLA" };
-            IEnumerable<Apartamento> aptoList = _apartamentoServices.FindBest(apartamentos).Result;
-            apartamentos.Should().NotBeEmpty();
+            Apartamento aptoList = _apartamentoServices.FindBest(apartamentos).Result;
+            aptoList.Should().NotBeNull();
 
             var jsonContent = new StringContent(JsonConvert.SerializeObject(apartamentos), Encoding.UTF8, "application/json");
             var response = _client.PostAsync($"/api/apartamentos/opcoes",jsonContent).Result;

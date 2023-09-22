@@ -21,8 +21,8 @@ export class ApartamentoRestService extends BaseRestService {
   public ListarTodos():Observable<IApartamento[]> {
     return this.client.get<IApartamento[]>(this.actionUrl);
   }
-  public recuperarPorOpcao(opcoes: string[]): Observable<IApartamento[]> {
+  public recuperarPorOpcao(opcoes: string[]): Observable<IApartamento> {
     const options = { headers: this.headers };
-    return this.client.post<IApartamento[]>(`${this.actionUrl}/opcoes`, JSON.stringify(opcoes),options);
+    return this.client.post<IApartamento>(`${this.actionUrl}/opcoes`, JSON.stringify(opcoes),options);
   }
 }

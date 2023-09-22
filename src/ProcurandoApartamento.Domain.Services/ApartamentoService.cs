@@ -40,11 +40,13 @@ namespace ProcurandoApartamento.Domain.Services
             return result;
         }
 
-        public virtual async Task<IEnumerable<Apartamento>> FindBest(IEnumerable<string> opcoes)
+        public virtual async Task<Apartamento> FindBest(IEnumerable<string> opcoes)
         {
             var result = await _apartamentoRepository.QueryHelper().WhereInAsync(e => e.Estabelecimento , opcoes);
-            result = result.Filter(x => x.EstabelecimentoExiste && x.ApartamentoDisponivel).OrderByDescending(x => x.Quadra);
-            return result;
+            result = result.Filter(x => x.EstabelecimentoExiste && x.ApartamentoDisponivel)
+                .OrderBy(a => Array.IndexOf(opcoes.ToArray<string>(), a.Estabelecimento))
+                .ThenByDescending(x => x.Quadra);
+            return result.FirstOrDefault();
         }
 
 

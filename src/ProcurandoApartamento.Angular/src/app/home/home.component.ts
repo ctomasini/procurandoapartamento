@@ -11,7 +11,7 @@ import { ApartamentoRestService } from 'src/services/apartamento-rest.service';
 export class HomeComponent implements OnInit {
 
   enviado: boolean = false;
-  aptos: IApartamento[] = [];
+  aptos: IApartamento | undefined;
   opcoes: string[] = [];
   form: FormGroup = this.formBuilder.group({
     academia: new FormControl(''),
@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
     this.aptoRestSrvc
     .recuperarPorOpcao(this.opcoes)
     .subscribe({
-      next:(result: IApartamento[])=> {
-        this.aptos = result as IApartamento[];
+      next:(result: IApartamento)=> {
+        this.aptos = result as IApartamento;
       } ,
       error:(err:any)=>{
         console.log(err);
@@ -53,9 +53,7 @@ export class HomeComponent implements OnInit {
   reset(){
     this.enviado = false;
     this.form.reset();
-    // this.form.get('academia')?.setValue(false)
-    // this.form.get('escola')?.setValue(false)
-    // this.form.get('mercado')?.setValue(false)
+    this.opcoes = [];
   }
 
 

@@ -14,6 +14,6 @@ namespace ProcurandoApartamento.Domain.Services.Interfaces
         Task<Apartamento> FindOne(long id);
 
         Task Delete(long id);
-        Task<IEnumerable<Apartamento>> FindBest(IEnumerable<string> opcoes);
+        Task<Apartamento> FindBest(IEnumerable<string> opcoes);
     }
 }
